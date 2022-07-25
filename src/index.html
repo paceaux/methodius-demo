@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">    
+    <title>Methodius Demo for languages</title>
+    <link href="styles.css" type="text/css"  rel="stylesheet"/>
+</head>
+<body>
+<header class="g-header">
+    <h1 class="g-header__title">N-gram frequencies for various languages</h1>
+    <div class="g_header__description">
+        <p>Using the <a href="https://github.com/paceaux/methodius">Methodius library</a>, this has generated letter-frequencies, bigrams, trigrams, and word frequencies.</p>
+        <p>This uses translations of the Universal Declaration of Human Rights.</p>
+    </div>
+
+    <language-nav class="js-nav g-header__nav tableSets__nav"></language-nav>
+</header>
+<main>
+    <section class="js-tables tableSets">
+        <table-set languageName="English" ></table-set>
+        <table-set languageName="Spanish" id="Spanish--tableSet"></table-set>
+        <table-set languageName="Catalan" id="Catalan--tableSet"></table-set>
+        <table-set languageName="Portuguese" id="Portuguese--tableSet"></table-set>
+        <table-set languageName="French" id="French--tableSet"></table-set>
+        <table-set languageName="Italian" id="Italian--tableSet"></table-set>
+        <table-set languageName="Basque" id="Basque--tableSet"></table-set>
+        <table-set languageName="Dutch" id="Dutch--tableSet"></table-set>
+        <table-set languageName="Welsh" id="Welsh--tableSet"></table-set>
+        <table-set languageName="Hebrew" id="Hebrew--tableSet"></table-set>
+    </section>
+</main>
+<footer class="g-footer">
+    <p>
+    <small>
+        &copy; All Rights Reserved. 
+    </small>
+    </p>
+</footer>
+<script src="demo.js" type="module"></script>
+</body>
+</html>

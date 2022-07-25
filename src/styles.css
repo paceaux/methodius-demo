@@ -1,0 +1,104 @@
+@import 'npm:typography-baseline.css';
+@import 'npm:table-baseline.css';
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+.g-header {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: auto auto 12rem;
+    grid-template-areas:
+        "title title nav"
+        "description description nav"
+        "description description nav";
+}
+
+.g-header__nav {
+    grid-area: nav;
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.g-header__title {
+    grid-area: title;
+}
+
+.g-header__description {
+    grid-area: description;
+}
+
+.g-footer {
+    display: flex;
+    justify-content: center;
+}
+
+
+.tableSets {
+  position: relative;
+}
+
+
+.navList {
+    list-style-type: none;
+    font-size: var(--smallTextSize);
+
+}
+
+.navList__item {
+
+}
+
+.tableSet {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: .618rem 0;
+}
+
+.tableSet__header{
+    font-size: var(--smallerTextSize);
+    width: 100%;
+}
+
+.tableSet__title {
+    border-bottom: 2px solid transparent;
+}
+
+.tableSet:target .tableSet__title {
+    border-bottom-color: var(--colorCoolDarker);
+}
+
+.tableSet__sample {
+    font-size: var(--smallTextSize);
+    max-height: 2em;
+    margin: .618rem .618rem;
+    overflow: hidden;
+    transition: .3s ease-in-out;
+}
+
+.tableSet__sample[open] {
+    max-height: 50vh;
+}
+
+.tableSet__tables {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    max-height: 50em;
+    transition: all .3s ease-in-out;
+}
+
+.tableSet--collapsed .tableSet__tables {
+    max-height: 0em;
+    overflow: hidden;
+}
+
+.tableSet__table {
+    flex-basis: 20vw;
+}
