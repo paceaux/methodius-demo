@@ -140,7 +140,7 @@ class TableSet extends LitElement {
     }
 
     .tableSet__sampleEditor {
-        width: 100%;
+        width: 98%;
         min-height: 15em;
     }
 .tableSet__sample[open] {
@@ -172,7 +172,8 @@ class TableSet extends LitElement {
     column-gap: 5vw;
     justify-content: space-between;
     width: 100%;
-    max-height: 50em;
+    max-height: 100vh;
+    overflow-y: scroll;
     transition: all .3s ease-in-out;
 }
 
