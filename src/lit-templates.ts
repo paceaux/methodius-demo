@@ -1,5 +1,7 @@
 import {LitElement, html, css, unsafeCSS} from 'lit';
 import {customElement, state, property } from 'lit/decorators.js';
+import {ref, createRef} from 'lit/directives/ref.js';
+
 import { createContext } from 'lit-context';
 import {repeat} from 'lit-html/directives/repeat.js';
 import {live} from 'lit/directives/live.js';
@@ -136,6 +138,11 @@ class TableSet extends LitElement {
         overflow: hidden;
         transition: .3s ease-in-out;
     }
+
+    .tableSet__sampleEditor {
+        width: 100%;
+        min-height: 15em;
+    }
 .tableSet__sample[open] {
     max-height: 50vh;
 }
@@ -146,7 +153,8 @@ class TableSet extends LitElement {
     margin: 1.618em .618rem; 
     padding: 0.618em .618rem;
     quotes: "\\201C""\\201D""\\2018""\\2019";
-
+    width: 100%;
+    min-height: 15em;
 }
 
 .tableSet__sampleText::before {
@@ -197,7 +205,6 @@ mark::selection {
         this.ngram = new Methodius();
     }
 
-
     @property({type: String})
     direction: 'ltr' | 'rtl' = 'ltr';
 
@@ -210,9 +217,21 @@ mark::selection {
     @property({type: String})
     languageSample = '';
 
+    @property({type: String})
+    highlightString: '';
+
+    @property({type: Boolean})
+    shouldHighlightWord = false;
+
+    @property({type: String})
+    highlightedSample = '';
+
     @property({type: Number})
     tableSize = 10;
 
+    sampleTextareaRef: Ref<HTMLInputElement> = createRef();
+
+    sampleHighlightRef: Ref<HTMLInputElement> = createRef();
 
     getCleanedSample(languageSample = this.languageSample) {
         const sample = languageSample;
@@ -244,8 +263,10 @@ mark::selection {
             const langSample = TableSet.samples.get(this.languageName);
             this.languageSample = langSample;
             this.ngram = new Methodius(this.getCleanedSample(this.languageSample));
+            this.highlightedSample = this.languageSample;
         } else if (this.languageSample && changedProperties.has('languageSample')) {
             this.ngram = new Methodius(this.getCleanedSample(this.languageSample));
+            this.highlightedSample = this.getHighlightedSample(this.highlightString, this.shouldHighlightWord);
         }
     }
 
@@ -253,14 +274,18 @@ mark::selection {
         const target = evt.composedPath()[0];
         if (target.classList.contains('table__col1')) {
             const highlightVal = target.innerText;
+            this.highlightString = highlightVal;
+            this.shouldHighlightWord = shouldHighlightWord;
             const highlightedSample = this.getHighlightedSample(highlightVal, shouldHighlightWord);
-            this.languageSample = highlightedSample;
+            this.highlightedSample = highlightedSample;
+            this.sampleTextareaRef.value.removeAttribute('open');
+            this.sampleHighlightRef.value.setAttribute('open', true);
         }
     }
 
     private _sampleUpdate(event: Event) {
         // when someone edits the text, remove highlighting
-        this.languageSample = this.getCleanedSample(event.currentTarget.innerText);
+        this.languageSample = this.getCleanedSample(event.currentTarget.value);
     }
 
     render() {
@@ -268,13 +293,29 @@ mark::selection {
             <article id="${this.languageName}--tableSet" class="tableSet">
                 <header class="tableSet__header">
                     <h2 class="tableSet__title">${this.languageName}</h2>
-                    <details class="tableSet__sample" open>
+                    <details class="tableSet__sample" ${ref(this.sampleTextareaRef)}>
+                        <summary>Edit sample</summary>
+                        <textarea 
+                            id="sample-update" 
+                            class="tableSet__sampleEditor" 
+                            @input="${this._sampleUpdate}" 
+                            .value=${this.languageSample}
+                        >
+                            ${this.languageSample}>
+                        </textarea>
+                    </details>
+                    <details class="tableSet__sample" open ${ref(this.sampleHighlightRef)}>
                         <summary class="tableSet__sampleHeading">Sample</summary>
-                        <blockquote lang="${this.langId}" class="js-${this.languageName} tableSet__sampleText" dir="${this.direction}" .innerHTML=${this.languageSample} @input=${this._sampleUpdate} contenteditable>
+                        <blockquote 
+                            lang="${this.langId}"
+                            class="js-${this.languageName} tableSet__sampleText" 
+                            dir="${this.direction}" 
+                            .innerHTML=${this.highlightedSample}
+                        >
                         </blockquote>
                     </details>
                 </header>
-                <div class="tablesContainer tableSet__tables">
+                    <div class="tablesContainer tableSet__tables">
                     <div class="tableSet__controls">
                     <label for="tableSize">Size of results</label>
                     <input id="tableSize" type="number" min="5" max="50" .value=${this.tableSize} @change=${(evt) => this.tableSize = evt.currentTarget.value}>
