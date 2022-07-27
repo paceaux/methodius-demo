@@ -49,3 +49,5 @@ class LanguageNav extends LitElement {
         `;
     }
 }
+
+export default LanguageNav;

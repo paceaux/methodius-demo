@@ -88,3 +88,4 @@ class FrequencyTable extends LitElement {
     }
 }
 
+export default FrequencyTable;

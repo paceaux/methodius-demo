@@ -266,3 +266,5 @@ mark::selection {
         `;
     }
 }
+
+export default TableSet;
