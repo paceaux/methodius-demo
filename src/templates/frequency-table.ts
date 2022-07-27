@@ -24,6 +24,16 @@ class FrequencyTable extends LitElement {
     td {
         --tableCellSize: var(--smallerTextSize);
     }
+    dl {
+        display: inline-flex;
+        flex-wrap: wrap;
+        margin: 0;
+
+    }
+    dt {
+        flex-basis: 50%;
+    }
+
     ` ];
 
     @property({ type: String})
@@ -32,6 +42,23 @@ class FrequencyTable extends LitElement {
     @property({ attribute: false })
     frequencies = new Map<string, number>();
 
+    getFrequency(frequency) {
+        if (typeof frequency === 'number' || typeof frequency === 'string') {
+            return html`${frequency}`
+        }
+
+        if (frequency instanceof Map) {
+            const entries = [...frequency.entries()];
+            return html`
+                <dl>
+                    ${repeat(entries, ([key, value]) => key, ([key, value]) => html`
+                        <dt>${key}: </dt>
+                        <dd>${value}</dd>
+                    `)}
+                </dl>
+            `
+        }
+    }
     render() {
         return html`
             <table class="table">
@@ -46,7 +73,7 @@ class FrequencyTable extends LitElement {
                     ${repeat(this.frequencies, (ngram) => ngram.id, ([ngram, frequency]) => html`
                         <tr>
                         <th headers="col1" id=${ngram} class="table__col1">${ngram}</th>
-                        <td headers="${ngram} col2" class="table__col2">${frequency}</td>
+                        <td headers="${ngram} col2" class="table__col2">${this.getFrequency(frequency)}</td>
                         </tr>
                     `)}
                 </tbody>

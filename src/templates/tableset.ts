@@ -183,6 +183,15 @@ mark::selection {
         }
     }
 
+    getTopPlacements(topNGrams: Map<String, number>, placements: Map<String, Map<String, Number>>) {
+        const topPlacements = new Map<String, Map<String, Number>>();
+        [...topNGrams.entries()].forEach(([bigram]) => {
+            topPlacements.set(bigram, placements.get(bigram));
+        });
+
+        return topPlacements;
+    }
+
     private _sampleUpdate(event: Event) {
         // when someone edits the text, remove highlighting
         this.languageSample = this.getCleanedSample(event.currentTarget.value);
@@ -239,6 +248,16 @@ mark::selection {
                         caption="Top word frequencies" 
                         .frequencies=${this.ngram.getTopWords(this.tableSize)}
                         @click=${(evt) => {this.cellClickHandler(evt, true)}}>
+                    </frequency-table>
+                    <frequency-table 
+                        caption="Bigram Positions" 
+                        .frequencies=${this.getTopPlacements(this.ngram.getTopBigrams(this.tableSize), this.ngram.bigramPositions)}
+                        @click=${(evt) => {this.cellClickHandler(evt)}}>
+                    </frequency-table>
+                    <frequency-table 
+                        caption="Trigram Positions" 
+                        .frequencies=${this.getTopPlacements(this.ngram.getTopTrigrams(this.tableSize), this.ngram.trigramPositions)}
+                        @click=${(evt) => {this.cellClickHandler(evt)}}>
                     </frequency-table>
                 </div>
             </article>
