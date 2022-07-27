@@ -42,6 +42,12 @@ class FrequencyTable extends LitElement {
     @property({ attribute: false })
     frequencies = new Map<string, number>();
 
+    @property({ type: String})
+    col1Header = 'N-gram';
+
+    @property({ type: String})
+    col2Header = 'Frequency';
+
     getFrequency(frequency) {
         if (typeof frequency === 'number' || typeof frequency === 'string') {
             return html`${frequency}`
@@ -65,8 +71,8 @@ class FrequencyTable extends LitElement {
                 <caption class="table__caption">${this.caption}</caption>
                 <thead class="table__head">
                     <tr>
-                        <th id="col1">N-gram</th>
-                        <th id="col2">Frequency</th>
+                        <th id="col1">${this.col1Header}</th>
+                        <th id="col2">${this.col2Header}</th>
                     </tr>
                 </thead>
                 <tbody class="table__body">

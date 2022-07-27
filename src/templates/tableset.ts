@@ -250,12 +250,14 @@ mark::selection {
                         @click=${(evt) => {this.cellClickHandler(evt, true)}}>
                     </frequency-table>
                     <frequency-table 
-                        caption="Bigram Positions" 
+                        caption="Bigram Positions"
+                        col2Header="Positions"
                         .frequencies=${this.getTopPlacements(this.ngram.getTopBigrams(this.tableSize), this.ngram.bigramPositions)}
                         @click=${(evt) => {this.cellClickHandler(evt)}}>
                     </frequency-table>
                     <frequency-table 
                         caption="Trigram Positions" 
+                        col2Header="Positions"
                         .frequencies=${this.getTopPlacements(this.ngram.getTopTrigrams(this.tableSize), this.ngram.trigramPositions)}
                         @click=${(evt) => {this.cellClickHandler(evt)}}>
                     </frequency-table>
