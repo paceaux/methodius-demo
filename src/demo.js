@@ -1,7 +1,6 @@
 const NGrammer = require('methodius');
-// const { generateNgramsFromSamples, sampleMap } = require('./sampleManager');
-const { makeTableSets, makeNav } = require('./dom-templates');
-const { LanguageNav, TableSet } = require('./lit-templates.ts');
+// const { generateNgramsFromSamples, sampleMap } = require('.
+const { LanguageNav, TableSet, FrequencyTable } = require('./templates');
 
 
 

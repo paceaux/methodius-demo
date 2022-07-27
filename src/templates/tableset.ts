@@ -1,110 +1,9 @@
-import {LitElement, html, css, unsafeCSS} from 'lit';
-import {customElement, state, property } from 'lit/decorators.js';
+import {LitElement, html, css} from 'lit';
+import {customElement, property } from 'lit/decorators.js';
 import {ref, createRef} from 'lit/directives/ref.js';
 
-import { createContext } from 'lit-context';
-import {repeat} from 'lit-html/directives/repeat.js';
-import {live} from 'lit/directives/live.js';
-
 import Methodius from 'methodius';
-import { tableStyles} from './table-styles';
-import { generateNgramsFromSamples, sampleMap } from './sampleManager';
-
-@customElement('language-nav')
-class LanguageNav extends LitElement {
-    @state({type: Map})
-    private languages = sampleMap;
-
-    static styles = css`
-
-        :host {
-            grid-area: nav;
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-end;
-        } 
-        .navList {
-            list-style-type: none;
-            font-size: var(--smallTextSize);
-        }
-        .navList__link {
-            color: var(--baseLinkColor);
-            text-decoration: inherit;
-            border-bottom: 1px solid transparent;
-            transition: inherit;
-        }
-
-        .navList__link:hover,
-        .navList__link:focus {
-            color: var(--baseLinkColorHover);
-            border-color: var(--baseLinkColorHover);
-            outline: inherit;
-        }
-    `;
-    render() {
-        return html`
-        <nav>
-            <ul class="g-header__nav-list navList">
-                ${repeat( this.languages, ([languageName ]) => html`
-                    <li class="navList__item">
-                        <a href="#${languageName}--tableSet" class="navList__link">${languageName}</a>
-                    </li>
-                `)}
-            </ul>
-        </nav>
-        `;
-    }
-}
-
-@customElement('frequency-table')
-class FrequencyTable extends LitElement {
-
-    static styles = [tableStyles, css`
-    :host {
-        flex-basis: 20vw;
-        flex-grow: 1;
-    }
-
-    table {
-        width: 100%;
-    }
-   
-    th {
-        --tableHeaderSize: var(--smallTextSize);
-      }
-    td {
-        --tableCellSize: var(--smallerTextSize);
-    }
-    ` ];
-
-    @property({ type: String})
-    caption = '';
-
-    @property({ attribute: false })
-    frequencies = new Map<string, number>();
-
-    render() {
-        return html`
-            <table class="table">
-                <caption class="table__caption">${this.caption}</caption>
-                <thead class="table__head">
-                    <tr>
-                        <th id="col1">N-gram</th>
-                        <th id="col2">Frequency</th>
-                    </tr>
-                </thead>
-                <tbody class="table__body">
-                    ${repeat(this.frequencies, (ngram) => ngram.id, ([ngram, frequency]) => html`
-                        <tr>
-                        <th headers="col1" id=${ngram} class="table__col1">${ngram}</th>
-                        <td headers="${ngram} col2" class="table__col2">${frequency}</td>
-                        </tr>
-                    `)}
-                </tbody>
-            </table>
-        `;
-    }
-}
+import { sampleMap } from '../data';
 
 @customElement('table-set')
 class TableSet extends LitElement {
@@ -346,8 +245,3 @@ mark::selection {
         `;
     }
 }
-export {
-    LanguageNav,
-    TableSet
-};
-

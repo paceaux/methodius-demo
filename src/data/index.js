@@ -1,4 +1,4 @@
-const samples = require("../samples");
+const samples = require("../../samples");
 
 
 
