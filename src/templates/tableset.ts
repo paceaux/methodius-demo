@@ -52,7 +52,7 @@ class TableSet extends LitElement {
     margin: 1.618em .618rem; 
     padding: 0.618em .618rem;
     quotes: "\\201C""\\201D""\\2018""\\2019";
-    width: 100%;
+    width: 98%;
     min-height: 15em;
 }
 
