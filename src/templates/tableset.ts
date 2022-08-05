@@ -231,32 +231,38 @@ mark::selection {
                     </div>
                     <frequency-table
                         caption="Most frequent letters out of ${this.ngram.letters.length}" 
+                        col1Header="Letter"
                         .frequencies=${this.ngram.getTopLetters(this.tableSize)}
                         @click=${(evt) => {this.cellClickHandler(evt)}}>
                     </frequency-table>
                     <frequency-table
                         caption="Most frequent bigrams out of ${this.ngram.bigrams.length} " 
+                        col1Header="Bigram"
                         .frequencies=${this.ngram.getTopBigrams(this.tableSize)}
                         @click=${(evt) => {this.cellClickHandler(evt)}}>
                     </frequency-table>
                     <frequency-table 
                         caption="Most frequent trigrams out of ${this.ngram.trigrams.length}" 
+                        col1Header="Trigram"
                         .frequencies=${this.ngram.getTopTrigrams(this.tableSize)}
                         @click=${(evt) => {this.cellClickHandler(evt)}}>
                     </frequency-table>
                     <frequency-table 
                         caption="Most frequent words out of ${this.ngram.words.length}" 
+                        col1Header="Word"
                         .frequencies=${this.ngram.getTopWords(this.tableSize)}
                         @click=${(evt) => {this.cellClickHandler(evt, true)}}>
                     </frequency-table>
                     <frequency-table 
                         caption="Bigram Positions"
+                        col1Header="Bigram"
                         col2Header="Positions"
                         .frequencies=${this.getTopPlacements(this.ngram.getTopBigrams(this.tableSize), this.ngram.bigramPositions)}
                         @click=${(evt) => {this.cellClickHandler(evt)}}>
                     </frequency-table>
                     <frequency-table 
                         caption="Trigram Positions" 
+                        col1Header="Trigram"
                         col2Header="Positions"
                         .frequencies=${this.getTopPlacements(this.ngram.getTopTrigrams(this.tableSize), this.ngram.trigramPositions)}
                         @click=${(evt) => {this.cellClickHandler(evt)}}>
