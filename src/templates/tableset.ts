@@ -230,22 +230,22 @@ mark::selection {
                     <input id="tableSize" type="number" min="5" max="50" .value=${this.tableSize} @change=${(evt) => this.tableSize = evt.currentTarget.value}>
                     </div>
                     <frequency-table
-                        caption="Top letter  frequencies" 
+                        caption="Most frequent letters out of ${this.ngram.letters.length}" 
                         .frequencies=${this.ngram.getTopLetters(this.tableSize)}
                         @click=${(evt) => {this.cellClickHandler(evt)}}>
                     </frequency-table>
                     <frequency-table
-                        caption="Top bigram frequencies" 
+                        caption="Most frequent bigrams out of ${this.ngram.bigrams.length} " 
                         .frequencies=${this.ngram.getTopBigrams(this.tableSize)}
                         @click=${(evt) => {this.cellClickHandler(evt)}}>
                     </frequency-table>
                     <frequency-table 
-                        caption="Top trigram frequencies" 
+                        caption="Most frequent trigrams out of ${this.ngram.trigrams.length}" 
                         .frequencies=${this.ngram.getTopTrigrams(this.tableSize)}
                         @click=${(evt) => {this.cellClickHandler(evt)}}>
                     </frequency-table>
                     <frequency-table 
-                        caption="Top word frequencies" 
+                        caption="Most frequent words out of ${this.ngram.words.length}" 
                         .frequencies=${this.ngram.getTopWords(this.tableSize)}
                         @click=${(evt) => {this.cellClickHandler(evt, true)}}>
                     </frequency-table>

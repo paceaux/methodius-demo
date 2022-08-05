@@ -78,7 +78,7 @@ class FrequencyTable extends LitElement {
                 <tbody class="table__body">
                     ${repeat(this.frequencies, (ngram) => ngram.id, ([ngram, frequency]) => html`
                         <tr>
-                        <th headers="col1" id=${ngram} class="table__col1">${ngram}</th>
+                        <th headers="col1" id=${ngram} class="table__col1" title="click to highlight '${ngram}' in the text">${ngram}</th>
                         <td headers="${ngram} col2" class="table__col2">${this.getFrequency(frequency)}</td>
                         </tr>
                     `)}
