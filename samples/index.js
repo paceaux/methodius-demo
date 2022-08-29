@@ -8,6 +8,8 @@ const nl = require('./nl');
 const ca = require('./ca');
 const it = require('./it');
 const cy = require('./cy');
+const de = require('./de');
+const ga = require('./ga');
 
 module.exports = new Set([
   en,
@@ -18,6 +20,8 @@ module.exports = new Set([
   it,
   eu,
   nl,
+  de,
+  ga,
   cy,
   he,
 ]);
