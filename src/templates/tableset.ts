@@ -17,11 +17,18 @@ class TableSet extends LitElement {
         width: 100%;
     }
     .tableSet__header {
+        position: sticky;
+        top: 0;
         font-size: var(--smallerTextSize);
         width: 100%;
+        background: rgba(255, 255, 255, .9);
     }
     .tableSet__title {
+        font-size: var(--bigTitleSize);
+        line-height: var(--smallLineHeight);
         border-bottom: 2px solid transparent;
+        margin: 0;
+        margin-bottom: calc(1.618vmin - 1vmax + .35em)
     }
 
     :host:target {
@@ -213,8 +220,8 @@ mark::selection {
                             ${this.languageSample}>
                         </textarea>
                     </details>
-                    <details class="tableSet__sample" open ${ref(this.sampleHighlightRef)}>
-                        <summary class="tableSet__sampleHeading">Sample</summary>
+                    <details class="tableSet__sample" ${ref(this.sampleHighlightRef)}>
+                        <summary class="tableSet__sampleHeading">View Sample</summary>
                         <blockquote 
                             lang="${this.langId}"
                             class="js-${this.languageName} tableSet__sampleText" 
@@ -224,10 +231,12 @@ mark::selection {
                         </blockquote>
                     </details>
                 </header>
-                    <div class="tablesContainer tableSet__tables">
+                <details>
+                <summary>View Analysis </summary>
+                <div class="tablesContainer tableSet__tables">
                     <div class="tableSet__controls">
-                    <label for="tableSize">Size of results</label>
-                    <input id="tableSize" type="number" min="5" max="50" .value=${this.tableSize} @change=${(evt) => this.tableSize = evt.currentTarget.value}>
+                        <label for="tableSize">Size of tables</label>
+                        <input id="tableSize" type="number" min="5" max="75" .value=${this.tableSize} @change=${(evt) => this.tableSize = evt.currentTarget.value}>
                     </div>
                     <frequency-table
                         caption="Most frequent letters out of ${this.ngram.letters.length}" 
@@ -268,6 +277,7 @@ mark::selection {
                         @click=${(evt) => {this.cellClickHandler(evt)}}>
                     </frequency-table>
                 </div>
+            </details>
             </article>
         `;
     }
