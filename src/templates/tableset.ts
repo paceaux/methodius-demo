@@ -15,20 +15,36 @@ class TableSet extends LitElement {
         justify-content: space-between;
         align-items: flex-start;
         width: 100%;
+        margin-bottom: 1.618em;
+        line-height: var(--baseLineHeight);
+        margin: 0 .618rem 0 .618rem; /* Comment-A */
+    }
+
+    .tableSet:target {
+        outline: 1px solid red;
     }
     .tableSet__header {
         position: sticky;
         top: 0;
-        font-size: var(--smallerTextSize);
         width: 100%;
         background: rgba(255, 255, 255, .9);
     }
-    .tableSet__title {
-        font-size: var(--bigTitleSize);
+
+    .tableSet__title, 
+    .tableSet__resultsHeading,
+    summary {
+        font-family: var(--titleFontFamily);
         line-height: var(--smallLineHeight);
         border-bottom: 2px solid transparent;
-        margin: 0;
+        margin: 0 .618rem 0 .618rem; /* Comment-A */
         margin-bottom: calc(1.618vmin - 1vmax + .35em)
+    }
+    .tableSet__title {
+        font-size: var(--bigTitleSize);
+    }
+
+    .tableSet__resultsHeading {
+        font-size: var(--baseTitleSize);
     }
 
     :host:target {
@@ -38,7 +54,7 @@ class TableSet extends LitElement {
         border-bottom-color: var(--colorCoolDarker);
     }
     .tableSet__sample {
-        font-size: var(--smallTextSize);
+        font-size: var(--smallestTextSize);
         max-height: 2em;
         margin: .618rem .618rem;
         overflow: hidden;
@@ -231,8 +247,8 @@ mark::selection {
                         </blockquote>
                     </details>
                 </header>
-                <details>
-                <summary>View Analysis </summary>
+                <details class="tableSet__results">
+                <summary class="tableSet__resultsHeading">View Analysis </summary>
                 <div class="tablesContainer tableSet__tables">
                     <div class="tableSet__controls">
                         <label for="tableSize">Size of tables</label>

@@ -13,14 +13,14 @@ const ga = require('./ga');
 
 module.exports = new Set([
   en,
+  nl,
+  de,
   es,
   ca,
   pt,
   fr,
   it,
   eu,
-  nl,
-  de,
   ga,
   cy,
   he,
