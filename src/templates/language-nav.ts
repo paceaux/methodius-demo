@@ -13,13 +13,21 @@ class LanguageNav extends LitElement {
 
         :host {
             grid-area: nav;
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-end;
+            width: 100%;
+            height: var(--navHeight);
         } 
+
+        .navContainer {
+            height: var(--navHeight);
+            width: 100%;
+        }
         .navList {
             list-style-type: none;
             font-size: var(--smallTextSize);
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            height: var(--navHeight);
         }
         .navList__link {
             color: var(--baseLinkColor);
@@ -37,7 +45,7 @@ class LanguageNav extends LitElement {
     `;
     render() {
         return html`
-        <nav>
+        <nav class="g-header__nav-container navContainer">
             <ul class="g-header__nav-list navList">
                 ${repeat( this.languages, ([languageName ]) => html`
                     <li class="navList__item">
