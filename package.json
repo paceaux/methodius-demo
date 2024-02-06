@@ -19,6 +19,9 @@
     "table-baseline.css": "^2.1.0",
     "typography-baseline.css": "^5.0.0"
   },
+  "optionalDependencies": {
+    "@parcel/watcher-linux-x64-glibc": "2.4.0"
+  },
   "dependencies": {
     "lit-context": "^1.0.15",
     "methodius": "^2.0.0",
