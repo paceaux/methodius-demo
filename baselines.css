@@ -1,25 +1,25 @@
-/*
-    Comment-A: 
-    rem for left-right, for consistent alignment.
-    em for top/bottom, so the spacing is relative to font-size  
-*/
 :root {
 /*===== 
-    #Color #Palette 
+    #Color #Palette #Variables
     Variables follow convention found here: https://codepen.io/paceaux/pen/XdxQza
-    Color is a dark, dark gray rgb (55, 55, 55). All grays and base line styles are multiples of this
-    Using a "base value", all colors are a multiple of 55
+    Color is a very dark gray:  rgb (31, 31, 31). Grays are multiples of 31. 
+    The NeutralDarker gray passes WCAGAA for contrast against a light background
 =====*/
-    --colorNeutralDarker: rgb(55,55,55);                    /*base:           #373737;    hsl(22%, 22%, 22%) */
-    --colorNeutralDark: rgb(110,110,110);                   /*  base * 2:  #6e6e6e;      hsl(0, 0%, 43%) */
-    --colorNeutral: rgb(165,165,165);                       /* base * 3:   #a5a5a5;      hsl(0, 0%, 65%) */
-    --colorNeutralLight: rgb(192.5,192.5,192.5);            /*base * 3.5: #c1c1c1;      hsl(0, 0%, 75%) */
-    --colorNeutralLighter: rgb(220,220,220);                /*  base * 4:    #dcdcdc;       hsl(0, 0%, 86%) */
-    --colorCool: rgb(110,165,220);                          /*   #6ea5dc; hsl(210, 61%, 65%);  */
-    --colorCoolDarker: rgb(110,165,193);                    /* #6ea5c1;  hsl (200,40%,59%) */
+    --colorNeutralDarker: rgb(31, 31, 31);              /* #1f1f1f; hsl(0%, 0%, 12%) */
+    --colorNeutralDark: rgb(62, 62, 62);                /* #5d5d5d; hsl(0, 0%, 36%) */
+    --colorNeutral: rgb(155, 155, 155);                 /* #9b9b9b; hsl(0, 0%, 61%) */
+    --colorNeutralLight: rgb(186, 186, 186);            /* #bababa; hsl(0, 0%, 73%) */
+    --colorNeutralLighter: rgb(217, 217, 217);          /* #d9d9d9; hsl(0, 0%, 85%) */
+
+    /*
+     These colors pass WCAG 2.1 for contrast against a light background and the NeutralDarker gray
+     Before you change them, check your contrast ratios:  https://webaim.org/resources/linkcontrastchecker/
+    */
+    --colorCool: rgb(47, 120, 193);                          /*   #2f78c1; hsl(210, 61%, 47%);  */
+    --colorCoolDarker: rgb(41, 105, 168);                    /*  #2a6bac;  hsl(210, 61%, 41%) */
 
 /*===== 
-    #Color #Link #Border 
+    #Color #Link #Border #Variables
     Variables follow convention found here: https://gist.github.com/paceaux/8638765e747f5bd6387b721cde99e066#sassscssstylus-naming
 =====*/
     --baseTextColor: var(--colorNeutralDarker);
@@ -28,14 +28,19 @@
     --baseLinkColorHover: var(--colorCoolDarker);
     --baseInlineBorderColor: var(--colorNeutralLight);
 
+    --baseTextLineColor: var(--baseTextColor);
+    --alertTextLineColor: rgb(255, 0, 0);
+
+    --baseQuoteBackgroundColor: 155, 155, 155, ; /* Same as colorNeutral*/
+
 /*===== 
-    #LineHeight 
+    #LineHeight #Variables
 =====*/
     --baseLineHeight: 1.618;
     --smallLineHeight: 1.2;
 
 /*===== 
-    #Body #Size #Paragraph #content-flow
+    #Body #Size #Paragraph #content-flow #Variables
 =====*/
     --biggestTextSize:  1.3em;
     --biggerTextSize: 1.2em;
@@ -46,11 +51,11 @@
     --smallestTextSize: .618em;
 
 /*===== 
-    #Heading #Title #Size
+    #Heading #Title #Size #Variables
     The small title sizes use the big text sizes; so they overlap
     They're here, though, so that, if desired, we can deviate and not have them overlap
 =====*/
-    --biggestTitleSize: 2.617924em; /* (16 x 1.618) x 1.618 */
+    --biggestTitleSize: 2.6179em; /* (16 x 1.618) x 1.618 */
     --bigTitleSize: 1.618em;
     --baseTitleSize: 1.5em;
     --smallTitleSize: var(--biggestTextSize);
@@ -58,22 +63,74 @@
     --smallestTitleSize: var(--bigTextSize);
 
 /*===== 
-    #Font #FontFamilies #Typeface #Code  #Heading #Paragraphs ===
+    #Spacing #Text #Size #Variables
+    rem for left-right, for consistent alignment.
+    em for top/bottom, so the spacing is relative to font-size  
+=====*/
+    --bigSpacingHorizontal: 1.618rem;
+    --baseSpacingHorizontal: .618rem;
+
+    --bigSpacingVertical: 1.618em;
+    --baseSpacingVertical: .618em;
+
+/*===== 
+    #Font #FontFamilies #Typeface #Code #Heading #Paragraphs #Variables
     base is meant to be what's applied to the majority of body copy
     title could also be called "headline", but would be  w/ other vars
 =====*/
-    --baseFontFamily: Georgia, 'Times New Roman', serif;
-    --titleFontFamily: Helvetica, Arial, sans-serif;
+    --baseFontFamily: georgia, "Times New Roman", serif;
+    --titleFontFamily: helvetica, arial, sans-serif;
     --codeFontFamily: monospace;
+
+/*===== 
+    #Font #Weight #Variables
+    though font-weight ranges from 100 - 900, "normal" is 400 and the ends
+         are a difference of 300 .
+    So the "est" weights are the extremes, with room to add 
+        light, lighter, heavy, heavier. 
+    Recommend adding "ultra" if the weight is > 700
+=====*/
+    --lightestFontWeight: 100;
+    --baseFontWeight: 400;
+    --heaviestFontWeight: 700;
+
+/*===== 
+    #font #style #Variables
+    Oblique will use the existing font and put the glyphs at an angle
+    Alternate will look for a font labelled with an italic face
+    If the browser doesn't have a labelled italic font, it synthesizes oblique
+=====*/
+    --shiftedFontVoice: oblique 15deg;
+    --baseFontVoice: normal;
+    --alternateFontVoice: italic;
+
+/*===== 
+    #font #quotes #border #Variables
+    These are the default quotes for English. Change these quotes-as needed for other languages
+    "secondary" quotes are nested quotes. e.g. <blockquote><blockquote>
+    the CSS properties 'open-quote', 'close-quote' will use the primary open and primary close quotes listed here
+=====*/
+    --baseTextQuotes: "\201C""\201D""\2018""\2019"; /*Primary open, primary close, secondary open, secondary close*/
+    --baseQuoteBorder: 10px solid var(--colorNeutralLighter);
+    --smallQuoteBorder: 5px solid var(--colorNeutralLight);
+
+/*===== 
+    #font #text #interactions #Variables
+    Interactions could/should include
+        idle: not being used, but an indicator that it can be
+        interest: a user has shown desire to interact (e.g. hover or focus)
+        active: a user is currently interacting
+=====*/
+    --idleTextLineStyle: dotted;
+    --interestTextLineStyle: solid;
+    --activeTextLineStyle: solid;
+    --idleTextDecoration: var(--idleTextLineStyle) underline 2px;
 }
 
 html {
-    color: #373737; 
     color: var(--baseTextColor);
-    font-family: Georgia, 'Times New Roman', serif;
     font-family: var(--baseFontFamily);
     font-size: calc(.5vw + 1rem); /* the font-size can scale up as the browser window gets larger, but doesn't get hard to read when the browser window shrinks*/
-    line-height: 1.168;
     line-height: var(--baseLineHeight);
 }
 
@@ -93,9 +150,8 @@ ul,
 ol,
 dl,
 pre {
-    line-height: 1.618;
     line-height: var(--baseLineHeight);
-    margin: 0 .618rem 0 .618rem; /* Comment-A */
+    margin: 0 var(--baseSpacingHorizontal);
 }
 
 
@@ -109,41 +165,33 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: Helvetica, Arial, sans-serif;
     font-family: var(--titleFontFamily);
-    font-weight: bold;
-    line-height: 1.2;
+    font-weight: var(--heaviestFontWeight);
     line-height: var(--smallLineHeight);
     margin-bottom: calc(1.618vmin - 1vmax + .35em); /* increases margin as screen width gets smaller */
 }
 
 h1 {
-    font-size: 2.617924em;
     font-size: var(--biggestTitleSize);
 }
 
 h2 {
-    font-size: 1.618em;
     font-size: var(--bigTitleSize);
 }
 
 h3 {
-    font-size: 1.5em;
     font-size: var(--baseTitleSize);
 }
 
 h4 {
-    font-size: 1.3em;
     font-size: var(--smallTitleSize);
 }
 
 h5 {
-    font-size: 1.2em;
     font-size: var(--smallerTitleSize);
 }
 
 h6 {
-    font-size: 1.1em;
     font-size: var(--smallestTitleSize);
 }
 
@@ -154,29 +202,33 @@ h6 {
 
 ul,
 ol,
-dl {
-    padding: .618em .618rem; /* Comment-A */
-}
-
-li {
-    text-indent: -.9em;
-    line-height: 1.618;
-    line-height: var(--baseLineHeight);
-    padding: 0;
-    margin: 0 0 0 .618rem;
+dl,
+menu {
+    padding: var(--baseSpacingVertical) var(--baseSpacingHorizontal);
 }
 
 li {
     list-style-position: inside;
+    text-indent: -.9em; /*this brings the left text aligned with the text of a <dd> element*/
+    line-height: var(--baseLineHeight);
+    padding: 0;
+    margin: 0 0 0 var(--baseSpacingHorizontal);
+}
+
+nav li,
+menu li {
+    list-style-type: none;
+    text-indent: 0;
+    margin: 0;
 }
 
 dt {
-    text-indent: -.618rem;
+    text-indent: calc(-1 * var(--baseSpacingHorizontal));
 }
 
 dd {
+    padding: 0 var(--baseSpacingHorizontal);
     margin: 0;
-    padding: 0 .618rem 0 .618rem;
 }
 
 
@@ -185,46 +237,60 @@ dd {
 =====*/
 
 hr {
-    color: #a5a5a5;
     color: var(--colorNeutral);
     border-width: .0625em;
     border-style: solid;
-    margin: 1.618em .618rem;
+    margin: var(--bigSpacingVertical) var(--baseSpacingHorizontal);
 }
 
 p,
 blockquote {
-    line-height: 1.618;
     line-height: var(--baseLineHeight);
 }
 
 p {
-    font-size: 1em;
     font-size: var(--baseTextSize);
-    margin-bottom: .618em;
+    margin-bottom: var(--baseSpacingVertical);
 }
 
+blockquote,
+q {
+    quotes: var(--baseTextQuotes);
+}
+
+blockquote::before,
+q::before {
+    content: open-quote;
+}
 
 /* Credit where it's due:
     https://css-tricks.com/snippets/css/simple-and-nice-blockquote-styling/
 */
 blockquote {
-    background: rgba(165, 165, 165, .15);
-    border-left: 10px solid#dcdcdc;
-    border-left: 10px solid var(--colorNeutralLighter);
-    margin: 1.618em .618rem; /* Comment-A */
-    padding: 0.618em .618rem;
-    quotes: "\201C""\201D""\2018""\2019";
+    padding: var(--baseSpacingVertical) var(--baseSpacingHorizontal);
+    border-left: var(--baseQuoteBorder);
+    background: rgba(var(--baseQuoteBackgroundColor) 0.15);
+    margin: var(--bigSpacingVertical) var(--baseSpacingHorizontal);
+}
+
+blockquote::before,
+blockquote::after {
+    color: var(--colorNeutralDark); /* Any lighter and it won't pass WCAG AA */
+    vertical-align: -0.5em;
+    font-size: 4em;
+    line-height: 0.1em;
 }
 
 blockquote::before {
-    color: #c1c1c1;
-    color: var(--colorNeutralLight);
-    content: open-quote;
-    font-size: 4em;
-    line-height: 0.1em;
-    margin-right: 0.25em;
-    vertical-align: -0.4em;
+    margin-right: var(--baseSpacingHorizontal);
+}
+
+blockquote::after {
+    content: no-close-quote;
+}
+
+q::after {
+    content: close-quote;
 }
 
 
@@ -235,12 +301,12 @@ blockquote::before {
 em,
 i,
 cite {
-    font-style: italic;
+    font-style: var(--alternateFontVoice);
 }
 
 strong,
 b {
-    font-weight: 700;
+    font-weight: var(--heaviestFontWeight);
 }
 
 cite {
@@ -248,15 +314,9 @@ cite {
     text-align: right;
 }
 
-u {
-    text-decoration: none;
-    border-bottom: 1px dotted red;
-}
-
 small,
 sub,
 sup {
-    font-size: .618em;
     font-size: var(--smallestTextSize);
     line-height: 1;
 }
@@ -278,54 +338,68 @@ s,
 strike,
 del,
 ins {
-    color: #6e6e6e;
     color: var(--baseEditorialTextColor);
 }
 
 s,
 strike,
 del {
-    text-decoration: strikethrough;
+    text-decoration: line-through;
 }
 
 ins,
 del {
-    background-color: rgba(220, 220, 220, .25);
+    background-color: rgba(217, 217, 217, 0.25);
 }
 
 ins {
     text-decoration: none;
 }
 
+/* U is for misspelled words. Invite user to make a correction */
+u {
+    text-decoration: var(--idleTextDecoration);
+    text-decoration-color: var(--alertTextLineColor);
+}
 
 /*
-mark and selection should be different, so user knows which one they've selected.
-
-mark and selections:
-  saturation: 44%
-  lightness: 75%
-Hue is different
+mark and selection should be different so user knows which one they've selected.
 */
 
+/* hue: 120, saturation: 45%, lightness: 73%  */
 mark {
-    background-color: rgba(165, 220, 165, .9);
+    background-color: rgba(155, 217, 155, 0.9);
 }
 
+/*hue: 180, saturation: 45%, lightness: 73%*/
 ::selection {
-    background-color: rgba(165, 220, 220, .9);
+    background-color: rgba(155, 217, 217, 0.9);
 }
 
-/* Because mark and selection have same saturation, brightenss, mark won't easily stand out if it's selected */
+/* Because mark and selection have same saturation and brightness, a selected <mark> won't stand out
+    A hue between 120 and 180 seems to stand out the best in all colorblind tests, too
+    hue: 150, saturation: 44%, lightness: 65%
+ */
 mark::selection {
-    background-color: rgba(165, 220, 110, .9);
+    background-color: rgba(126, 205, 166, 0.9);
 }
 
 /* dfn and dt both do the same thing: denote a term to be defined */
 dfn,
 dt {
-    font-style: oblique;
-    font-weight: 700;
+    font-weight: var(--heaviestFontWeight);
+    font-style: var(--shiftedFontVoice);
     text-transform: capitalize;
+}
+
+abbr {
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+/* an abbreviation with a title should invite a user to hover over it*/
+abbr[title] {
+    text-decoration: var(--idleTextDecoration);
 }
 
 
@@ -338,21 +412,18 @@ code,
 var,
 samp,
 data {
-    font-family: monospace;
     font-family: var(--codeFontFamily);
 }
 
 kbd,
 samp,
 data {
-    background-color: rgba(165, 165, 165, .2);
+    background-color: rgba(var(--baseQuoteBackgroundColor) 0.2);
 }
 
 kbd {
-    font-size: .75em;
     font-size: var(--smallerTextSize);
     padding: .25ex .5ex;
-    border: 1px solid #c1c1c1;
     border: 1px solid  var(--baseInlineBorderColor);
     border-radius: 3px;
 }
@@ -365,28 +436,20 @@ data {
 
 var,
 data {
-    font-style: italic;
+    font-style: var(--alternateFontVoice);
 }
 
 samp {
-    border-left: 5px solid #c1c1c1;
-    border-left: 5px solid var(--baseInlineBorderColor);
-}
-
-data {
-    padding: 0 10px;
+    border-left: var(--smallQuoteBorder);
 }
 
 pre {
-    font-size: .75em;
+    overflow: scroll;
     font-size: var(--smallerTextSize);
-    line-height: 1.2;
     line-height: var(--smallLineHeight);
-    padding: .618em .618rem;
-    border: 1px solid #c1c1c1;
+    padding: var(--baseSpacingVertical) var(--baseSpacingHorizontal);
     border: 1px solid var(--baseInlineBorderColor);
     border-radius: 2px;
-    overflow: scroll;
 }
 
 
@@ -395,8 +458,8 @@ pre {
 =====*/
 
 ruby {
-    display: ruby;
     position: relative;
+    display: ruby;
     margin:0 .5ex;
     -webkit-ruby-position: before;
     ruby-position: over;
@@ -424,9 +487,9 @@ rtc > bdo {
 }
 
 /*complex ruby for chrome and Edge*/
+
 /*only FF has "complete" ruby support*/
 @supports (ruby-align: left) or ( not (display:ruby-base-container))  {
-
     ruby {
         display:inline-flex;
         flex-direction: column;
@@ -447,7 +510,6 @@ rtc > bdo {
 
 /*Edge fixes*/
 @supports  ((ruby-align: left)) {
-
     rtc {
         justify-content: space-between;
     }
@@ -463,24 +525,21 @@ rtc > bdo {
 =====*/
 
 a {
-    color: #6ea5dc;
     color: var(--baseLinkColor);
     text-decoration: none;
-    border-bottom: 1px dotted transparent;
+    border-bottom: 1px var(--idleTextLineStyle);
     transition: all .3s ease-in-out;
 }
 
 a:hover,
 a:focus {
-    color: #6ea5c1;
     color: var(--baseLinkColorHover);
-    border-color: #6ea5c1;
-    border-color: var(--baseLinkColorHover);
+    border-bottom-style: var(--interestTextLineStyle);
     outline: none;
 }
 
 a:active {
-    border-style: solid;
+    border-bottom-style: var(--activeTextLineStyle);
 }
 
 
@@ -489,289 +548,29 @@ a:active {
 ==========*/
 
 table {
-    font-size: .8em;
     font-size:  var(--smallTextSize);
 }
 
 caption {
-    font-size: 1em;
-    font-size:  var(--baseTextSize);
+    font-style: var(--alternateFontVoice);
     text-transform: capitalize;
-    font-style: italic;
+    font-size:  var(--baseTextSize);
 }
 
 th, td {
     text-align: left;
     vertical-align: middle;
-    line-height: 1.2;
     line-height: var(--smallLineHeight);
-    padding: .4em .618rem;
+    padding: .4em var(--baseSpacingHorizontal);
 }
 
 th {
-    font-family: Helvetica, Arial, sans-serif;
     font-family: var(--titleFontFamily);
-    font-weight: bold;
-    font-size: 1.3em;
+    font-weight: var(--heaviestFontWeight);
     font-size: var(--smallTitleSize); /*treat th in a body as h4*/
 }
 
 thead th,
 tfoot th {
-    font-size: 1.5em;
     font-size: var(--baseTitleSize); /*treat th in header/footer as h3*/
-}
-
-details {
-    margin: 1.618em .618rem; /* Comment-A */
-    padding: 0.618em .618rem;
-    --detailsColor: var(--colorNeutralDark);
-    --detailsColorInterest: var(--colorNeutralDarker);
-    --detailsBorderColorInterest: rgb(165, 220, 165);
-    --detailsBorderColorActive: rgb(165, 220, 110);
-}
-
-summary {
-    color: var(--detailsColor);
-    font-size: var(--biggerTextSize);
-    text-indent: .618em;
-    border-bottom: 1px dashed transparent;
-    transition: all .3s ease-in-out;
-}
-
-summary:hover,
-summary:focus {
-    color: var(--detailsColorInterest);
-    border-bottom-color: var(--detailsBorderColorInterest);
-    outline: none;
-}
-
-[open] summary:hover,
-[open] summary:focus {
-    border-bottom-color: var(--detailsBorderColorActive);
-}
-
-summary:active,
-[open] summary {
-    border-bottom-style: solid;
-}
-
-
-summary::marker {
-    color: var(--detailsBorderColorInterest);
-    font-weight: 700;
-}
-
-    /*==========
-#Table #Variables
-==========*/
-table {
-    /*=====
-        #Text #Size
-    =====*/
-    --tableBiggestTextSize: var(--biggerTextSize, 1.2em);
-    --tableBiggerTextSize: var(--bigTextSize, 1.1em);
-    --tableBaseTextSize: var(--smallTextSize, .8em);
-    --tableSmallerTextSize: var(--smallerTextSize, .75em);
-    --tableSmallestTextSize: var(--smallerTextSize, .618em);
-  
-    /* Variable to be used in td, th*/
-    --tableCellSize: var(--tableBaseTextSize);
-
-
-    /*=====
-        #Title #Size
-    =====*/
-    --tableBiggestTitleSize: var(--baseTitleSize, 1.5em);
-    --tableBiggerTitleSize: var(--biggestTextSize, 1.3em);
-    --tableBaseTitleSize: var(--tableBiggestTextSize);
-    --tableSmallerTitleSize: var(--tableBiggerTextSize);
-    --tableSmallestTitleSize: var(--tableBaseTextSize);
-    
-    /* assume for any column headers*/
-    --tableColHeaderSize: var(--tableBiggestTitleSize);
-    /* assume for any row headers*/
-    --tableRowHeaderSize: var(--tableBaseTitleSize);
-    /*used by th in the tbody, thead, tfoot*/
-    --tableHeaderSize: var(--tableRowHeaderSize);
-
-
-    /*===== 
-        #LineHeight 
-    =====*/
-    --tableBaseLineHeight: var(--smallLineHeight, 1.2);
-    --tableSmallLineHeight: 1;
-
-
-    /*===== 
-        #Font #FontFamilies #Typeface
-    =====*/
-    --tableBaseFontFamily: var(--baseFontFamily,  'Georgia','Times New Roman', 'serif');
-    --tableTitleFontFamily: var(--titleFontFamily, 'Helvetica', 'Arial', 'sans-serif');
-
-    --tableCaptionTransform: capitalize;
-    --tableCaptionFontStyle: italic;
-
-
-    /*===== 
-        #Border
-    =====*/ 
-    --tableBorderCollapse: collapse;
-    --tableBorderColor: var(--baseInlineBorderColor, rgb(192.5,192.5,192.5));
-    --tableBorderStyle: solid;
-
-    --tableCellBorderWidth: 2px;
-    --tableHeaderBorderWidth: var(--tableCellBorderWidth);
-
-
-    /*===== 
-        #Spacing
-    =====*/ 
-    --tableCellVertPadding: .4em;
-    --tableCellHorzPadding: .618em;
-    --tableTextAlign: left;
-    --tableVertAlign: middle;
-
-
-    /*=====
-        #Colors
-    =====*/
-    --tableBaseTextColor:var(--baseTextColor, rgb(55,55,55));
-
-
-    /*===== 
-        #Background
-    =====*/ 
-    --tableBodyPrimaryBgColor: transparent;
-    --tableBodyAlternatingBgColor: rgba(165,165,165, .3);
-
-    --tablePrimaryBgColor: var(--tableBodyPrimaryBgColor);
-    --tableAlternatingBgColor: var(--tableBodyAlternatingBgColor);
-}
-
-
-/*===== #TableSections #Variables
-Variables scoped for the sections of a table
-Rather than adding classes or redeclaring, 
-we have the ability to change styles by changing values of the variables
-=====*/
-thead,
-tfoot,
-tbody {
-    --borderWidth: var(--tableCellBorderWidth);
-}
-
-/* Not Necessary, but in case we want the header rows to be different from the body rows*/
-thead,
-tfoot {
-    --tablePrimaryBgColor: var(--tableBodyAlternatingBgColor);
-    --tableAlternatingBgColor: var(--tableBodyPrimaryBgColor);
-}
-
-/* thead will have bigger th and td*/
-thead {
-    --tableHeaderSize: var(--tableColHeaderSize);
-    --tableCellSize: var(--tableBiggerTextSize);
-}
-
-/* tfoot will have smaller th and td*/
-tfoot {
-    --tableHeaderSize: var(--tableSmallestTitleSize);
-    --tableCellSize: var(--tableSmallerTextSize);
-}
-
-/* tbody is the standard*/
-tbody {
-    --tableHeaderSize: var(--tableRowHeaderSize);
-    --tableCellSize: var(--tableCellSize);
-}
-
-/*=====
-#Table    
-=====*/
-table {
-    border-collapse: var(--tableBorderCollapse);
-    color: var(--tableBaseTextColor);
-    font-family: var(--tableBaseFontFamily);
-}
-
-caption {
-    font-size:  var(--tableSmallestTextSize);
-    text-transform: var(--tableCaptionTransform);
-    font-style: var(--tableCaptionFontStyle);
-}
-
-
-/*=====
-#Table #Cells   
-=====*/
-th,
-td {
-    text-align: var(--tableTextAlign);
-    vertical-align: var(--tableVertAlign);
-    line-height: var(--tableBaseLineHeight);
-    padding: var(--tableCellVertPadding);
-    border-color: var(--tableBorderColor);
-    border-style: var(--tableBorderStyle);
-}
-
-th:empty,
-td:empty {
-    padding: 0;
-    border-width: 0;
-}
-
-td {
-    font-size: var(--tableCellSize);
-    border-width: var(--borderWidth);
-}
-
-th {
-    font-family: var(--tableTitleFontFamily);
-    font-weight: bold;
-    font-size: var(--tableHeaderSize);
-    border-width: var(--tableHeaderBorderWidth);
-}
-
-th[scope="rowgroup"] {
-    font-size: var(--tableBiggestTitleSize);
-    border-width: 0;
-    padding: var(--tableCellVertPadding);
-}
-
-thead tr:nth-child(n+2) th {
-  font-size: var(--tableBiggerTitleSize);
-}
-
-thead tr:nth-child(n+3) th {
-  font-size: var(--tableBaseTitleSize);
-}
-
-thead th {
-    border-bottom-width: var(--borderWidth);
-}
-
-tfoot th {
-  border-top-width: var(--borderWidth);
-}
-
-/*=====
-#Table #Rows
-=====*/
-tr {
-    background-color: var(--tablePrimaryBgColor);
-}
-
-tr:nth-child(even)  {
-    background-color: var(--tableAlternatingBgColor);
-}
-
-
-tr :first-child:empty,
-tr :last-child:empty {
-  background-color: white;
-}
-
-colgroup:first-of-type:last-of-type ~ tbody tr :nth-child(even){
-  background-color: rgba(165, 165, 165, .2);
 }
