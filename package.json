@@ -16,7 +16,7 @@
     "copyfiles": "^2.4.1",
     "lit": "^2.2.7",
     "parcel": "^2.6.2",
-    "table-baseline.css": "^1.1.0",
+    "table-baseline.css": "^2.1.0",
     "typography-baseline.css": "^5.0.0"
   },
   "dependencies": {
