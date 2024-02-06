@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "lit-context": "^1.0.15",
-    "methodius": "^1.2.1",
+    "methodius": "^2.0.0",
     "require-dir": "^1.2.0"
   }
 }

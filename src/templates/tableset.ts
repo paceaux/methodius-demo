@@ -2,7 +2,7 @@ import {LitElement, html, css} from 'lit';
 import {customElement, property } from 'lit/decorators.js';
 import {ref, createRef} from 'lit/directives/ref.js';
 
-import Methodius from 'methodius';
+import {Methodius} from 'methodius';
 import { sampleMap } from '../data';
 
 @customElement('table-set')
@@ -292,6 +292,33 @@ mark::selection {
                         .frequencies=${this.getTopPlacements(this.ngram.getTopTrigrams(this.tableSize), this.ngram.trigramPositions)}
                         @click=${(evt) => {this.cellClickHandler(evt)}}>
                     </frequency-table>
+                </div>
+                <div class="tablesContainer tableSet__tables">
+                    <div class="tableSet__controls">
+                        <label for="tableSize-2">Size of tables</label>
+                        <input id="tableSize-2" type="number" min="5" max="75" .value=${this.tableSize} @change=${(evt) => this.tableSize = evt.currentTarget.value}>
+                    </div>
+                    <frequency-table
+                        caption="Top Bigram relationships"
+                        col1Header="Bigram"
+                        col2Header="N times occurs with other top bigrams"
+                        .frequencies=${this.ngram.getRelatedTopNgrams(2, this.tableSize)}
+                        @click=${(evt) => {this.cellClickHandler(evt)}}>
+                        </frequency-table>
+                    <frequency-table
+                        caption="Top trigram relationships"
+                        col1Header="trigram"
+                        col2Header="N times occurs with other top Trigrams"
+                        .frequencies=${this.ngram.getRelatedTopNgrams(3, this.tableSize)}
+                        @click=${(evt) => {this.cellClickHandler(evt)}}>
+                        </frequency-table>
+                    <frequency-table
+                        caption="Top 4-gram relationships"
+                        col1Header="4gram"
+                        col2Header="N times occurs with other top Trigrams"
+                        .frequencies=${this.ngram.getRelatedTopNgrams(4, this.tableSize)}
+                        @click=${(evt) => {this.cellClickHandler(evt)}}>
+                        </frequency-table>
                 </div>
             </details>
             </article>
