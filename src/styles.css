@@ -7,13 +7,14 @@ html {
 }
 
 .g-header {
+    --navHeight: 8rem;
     display: grid;
-    grid-template-rows: auto auto auto;
-    grid-template-columns: auto auto 12rem;
+    grid-template-rows: 3rem auto var(--navHeight);
+    grid-template-columns: 33% auto 18rem;
     grid-template-areas:
         "title title nav"
-        "description description nav"
-        "description description nav";
+        "description  .  nav"
+        "description  .  nav";
 }
 
 .g-header__nav {
@@ -23,10 +24,12 @@ html {
     justify-content: flex-end;
 }
 .g-header__title {
+    font-size: var(--bigTitleSize);
     grid-area: title;
 }
 
 .g-header__description {
+    font-size: var(--smallerTextSize);
     grid-area: description;
 }
 
@@ -44,7 +47,6 @@ html {
 .navList {
     list-style-type: none;
     font-size: var(--smallTextSize);
-
 }
 
 .navList__item {

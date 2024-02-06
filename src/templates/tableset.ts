@@ -108,6 +108,12 @@ class TableSet extends LitElement {
     width: 100%;
     flex-grow:1;
 }
+
+.tableSet__helperText {
+    display: block;
+    font-size: var(--smallestTextSize);
+    font-style: var(--alternateFontVoice);
+}
 mark {
     background-color: rgba(165, 220, 165, .9);
 }
@@ -151,6 +157,9 @@ mark::selection {
 
     @property({type: Number})
     tableSize = 10;
+
+    @property({type: Number})
+    relationTableSize = 5;
 
     sampleTextareaRef: Ref<HTMLInputElement> = createRef();
 
@@ -249,11 +258,13 @@ mark::selection {
                 </header>
                 <details class="tableSet__results">
                 <summary class="tableSet__resultsHeading">View Analysis </summary>
-                <div class="tablesContainer tableSet__tables">
                     <div class="tableSet__controls">
-                        <label for="tableSize">Size of tables</label>
+                        <label for="tableSize">Table Rows</label>
                         <input id="tableSize" type="number" min="5" max="75" .value=${this.tableSize} @change=${(evt) => this.tableSize = evt.currentTarget.value}>
+                        <small class="tableSet__helperText">click on a letter, bigram, ngram, or word to see it highlighted in the sample.</small>
                     </div>
+                <h3>Frequencies</h3>
+                <div class="tablesContainer tableSet__tables">
                     <frequency-table
                         caption="Most frequent letters out of ${this.ngram.letters.length}" 
                         col1Header="Letter"
@@ -278,6 +289,9 @@ mark::selection {
                         .frequencies=${this.ngram.getTopWords(this.tableSize)}
                         @click=${(evt) => {this.cellClickHandler(evt, true)}}>
                     </frequency-table>
+                    </div>
+                <h3>Positions</h3>
+                <div class="tablesContainer tableSet__tables">
                     <frequency-table 
                         caption="Bigram Positions"
                         col1Header="Bigram"
@@ -293,30 +307,31 @@ mark::selection {
                         @click=${(evt) => {this.cellClickHandler(evt)}}>
                     </frequency-table>
                 </div>
+                <h3>Relationships</h3>
                 <div class="tablesContainer tableSet__tables">
                     <div class="tableSet__controls">
-                        <label for="tableSize-2">Size of tables</label>
-                        <input id="tableSize-2" type="number" min="5" max="75" .value=${this.tableSize} @change=${(evt) => this.tableSize = evt.currentTarget.value}>
+                        <label for="tableSize-2">Table Rows</label>
+                        <input id="tableSize-2" type="number" min="5" max="75" .value=${this.relationTableSize} @change=${(evt) => this.relationTableSize = evt.currentTarget.value}>
                     </div>
                     <frequency-table
                         caption="Top Bigram relationships"
                         col1Header="Bigram"
                         col2Header="N times occurs with other top bigrams"
-                        .frequencies=${this.ngram.getRelatedTopNgrams(2, this.tableSize)}
+                        .frequencies=${this.ngram.getRelatedTopNgrams(2, this.relationTableSize)}
                         @click=${(evt) => {this.cellClickHandler(evt)}}>
                         </frequency-table>
                     <frequency-table
                         caption="Top trigram relationships"
                         col1Header="trigram"
                         col2Header="N times occurs with other top Trigrams"
-                        .frequencies=${this.ngram.getRelatedTopNgrams(3, this.tableSize)}
+                        .frequencies=${this.ngram.getRelatedTopNgrams(3, this.relationTableSize)}
                         @click=${(evt) => {this.cellClickHandler(evt)}}>
                         </frequency-table>
                     <frequency-table
                         caption="Top 4-gram relationships"
                         col1Header="4gram"
                         col2Header="N times occurs with other top Trigrams"
-                        .frequencies=${this.ngram.getRelatedTopNgrams(4, this.tableSize)}
+                        .frequencies=${this.ngram.getRelatedTopNgrams(4, this.relationTableSize)}
                         @click=${(evt) => {this.cellClickHandler(evt)}}>
                         </frequency-table>
                 </div>

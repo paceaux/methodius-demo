@@ -4,7 +4,7 @@
   "description": "a demo of the methodius utility",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel src/index.html",
+    "start": "parcel src/index.html --no-cache",
     "build": "parcel build src/index.html --public-url ./"
   },
   "author": "paceaux",
@@ -17,7 +17,7 @@
     "lit": "^2.2.7",
     "parcel": "^2.6.2",
     "table-baseline.css": "^1.1.0",
-    "typography-baseline.css": "^2.0.0"
+    "typography-baseline.css": "^5.0.0"
   },
   "dependencies": {
     "lit-context": "^1.0.15",
