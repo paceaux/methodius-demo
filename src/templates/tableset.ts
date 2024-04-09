@@ -132,6 +132,7 @@ mark::selection {
     constructor() {
         super();
         this.ngram = new Methodius();
+        window[this.languageName] = this.ngram;
     }
 
     @property({type: String})
@@ -195,9 +196,11 @@ mark::selection {
             const langSample = TableSet.samples.get(this.languageName);
             this.languageSample = langSample;
             this.ngram = new Methodius(this.getCleanedSample(this.languageSample));
+            window[this.languageName] = this.ngram;
             this.highlightedSample = this.languageSample;
         } else if (this.languageSample && changedProperties.has('languageSample')) {
             this.ngram = new Methodius(this.getCleanedSample(this.languageSample));
+            window[this.languageName] = this.ngram;
             this.highlightedSample = this.getHighlightedSample(this.highlightString, this.shouldHighlightWord);
         }
     }
