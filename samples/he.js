@@ -24,4 +24,5 @@ module.exports = {
     name: 'Hebrew',
     udhrPreamble,
     udhr1,
+    direction: 'rtl',
 }

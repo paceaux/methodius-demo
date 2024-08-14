@@ -270,24 +270,32 @@ mark::selection {
                 <h3>Frequencies</h3>
                 <div class="tablesContainer tableSet__tables">
                     <frequency-table
+                        direction="${this.direction}"
+                        langId="${this.langId}"
                         caption="Most frequent letters out of ${this.ngram.letters.length}" 
                         col1Header="Letter"
                         .frequencies=${this.ngram.getTopLetters(this.tableSize)}
                         @click=${(evt) => {this.cellClickHandler(evt)}}>
                     </frequency-table>
                     <frequency-table
+                        direction="${this.direction}"
+                        langId="${this.langId}"
                         caption="Most frequent bigrams out of ${this.ngram.bigrams.length} " 
                         col1Header="Bigram"
                         .frequencies=${this.ngram.getTopBigrams(this.tableSize)}
                         @click=${(evt) => {this.cellClickHandler(evt)}}>
                     </frequency-table>
-                    <frequency-table 
+                    <frequency-table
+                        direction="${this.direction}"
+                        langId="${this.langId}" 
                         caption="Most frequent trigrams out of ${this.ngram.trigrams.length}" 
                         col1Header="Trigram"
                         .frequencies=${this.ngram.getTopTrigrams(this.tableSize)}
                         @click=${(evt) => {this.cellClickHandler(evt)}}>
                     </frequency-table>
-                    <frequency-table 
+                    <frequency-table
+                        direction="${this.direction}"
+                        langId="${this.langId}" 
                         caption="Most frequent words out of ${this.ngram.words.length}" 
                         col1Header="Word"
                         .frequencies=${this.ngram.getTopWords(this.tableSize)}
@@ -296,14 +304,18 @@ mark::selection {
                     </div>
                 <h3>Positions</h3>
                 <div class="tablesContainer tableSet__tables">
-                    <frequency-table 
+                    <frequency-table
+                        direction="${this.direction}"
+                        langId="${this.langId}" 
                         caption="Bigram Positions"
                         col1Header="Bigram"
                         col2Header="Positions"
                         .frequencies=${this.getTopPlacements(this.ngram.getTopBigrams(this.tableSize), this.ngram.bigramPositions)}
                         @click=${(evt) => {this.cellClickHandler(evt)}}>
                     </frequency-table>
-                    <frequency-table 
+                    <frequency-table
+                        direction="${this.direction}"
+                        langId="${this.langId}" 
                         caption="Trigram Positions" 
                         col1Header="Trigram"
                         col2Header="Positions"
@@ -318,6 +330,8 @@ mark::selection {
                         <input id="tableSize-2" type="number" min="5" max="75" .value=${this.relationTableSize} @change=${(evt) => this.relationTableSize = evt.currentTarget.value}>
                     </div>
                     <frequency-table
+                        direction="${this.direction}"
+                        langId="${this.langId}"
                         caption="Top Bigram relationships"
                         col1Header="Bigram"
                         col2Header="N times occurs with other top bigrams"
@@ -325,6 +339,8 @@ mark::selection {
                         @click=${(evt) => {this.cellClickHandler(evt)}}>
                         </frequency-table>
                     <frequency-table
+                        direction="${this.direction}"
+                        langId="${this.langId}"
                         caption="Top trigram relationships"
                         col1Header="trigram"
                         col2Header="N times occurs with other top Trigrams"
@@ -332,6 +348,8 @@ mark::selection {
                         @click=${(evt) => {this.cellClickHandler(evt)}}>
                         </frequency-table>
                     <frequency-table
+                        direction="${this.direction}"
+                        langId="${this.langId}"
                         caption="Top 4-gram relationships"
                         col1Header="4gram"
                         col2Header="N times occurs with other top Trigrams"

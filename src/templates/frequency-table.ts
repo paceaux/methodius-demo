@@ -48,6 +48,12 @@ class FrequencyTable extends LitElement {
     @property({ type: String})
     col2Header = 'Frequency';
 
+    @property({ type: String})
+    langId = '';
+
+    @property({ type: String})
+    direction: 'ltr' | 'rtl' = 'ltr';
+
     getFrequency(frequency) {
         if (typeof frequency === 'number' || typeof frequency === 'string') {
             return html`${frequency}`
@@ -78,7 +84,7 @@ class FrequencyTable extends LitElement {
                 <tbody class="table__body">
                     ${repeat(this.frequencies, (ngram) => ngram.id, ([ngram, frequency]) => html`
                         <tr>
-                        <th headers="col1" id=${ngram} class="table__col1" title="click to highlight '${ngram}' in the text">${ngram}</th>
+                        <th headers="col1" id=${ngram} class="table__col1" title="click to highlight '${ngram}' in the text" lang="${this.langId}" direction="${this.direction}">${ngram}</th>
                         <td headers="${ngram} col2" class="table__col2">${this.getFrequency(frequency)}</td>
                         </tr>
                     `)}

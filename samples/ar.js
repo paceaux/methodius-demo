@@ -25,4 +25,5 @@ module.exports = {
     name: "Arabic",
     udhrPreamble,
     udhr1,
+    direction: 'rtl',
 }

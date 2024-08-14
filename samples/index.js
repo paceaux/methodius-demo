@@ -14,6 +14,7 @@ const ast = require('./ast');
 const nn = require('./nn');
 const sv = require('./sv');
 const sco = require('./sco');
+const ar = require('./ar');
 
 module.exports = new Set([
   en,
@@ -32,4 +33,5 @@ module.exports = new Set([
   cy,
   sco,
   he,
+  ar,
 ]);
