@@ -242,7 +242,8 @@ mark::selection {
                         <textarea 
                             id="sample-update" 
                             class="tableSet__sampleEditor" 
-                            @input="${this._sampleUpdate}" 
+                            @input="${this._sampleUpdate}"
+                            lang="${this.langId}" 
                             .value=${this.languageSample}
                         >
                             ${this.languageSample}>
