@@ -15,6 +15,10 @@ const nn = require('./nn');
 const sv = require('./sv');
 const sco = require('./sco');
 const ar = require('./ar');
+const oc = require('./oc');
+const gl = require('./gl');
+const co = require('./co');
+const da = require('./da');
 
 module.exports = new Set([
   en,
@@ -26,7 +30,11 @@ module.exports = new Set([
   ca,
   ast,
   pt,
+  oc,
+  gl,
+  co,
   fr,
+  da,
   it,
   eu,
   ga,

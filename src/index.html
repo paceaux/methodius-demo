@@ -9,11 +9,11 @@
 <header class="g-header">
     <h1 class="g-header__title">N-gram frequencies for languages</h1>
     <div class="g-header__description">
-        <p>Using the <a href="https://github.com/paceaux/methodius">Methodius library</a>, this has generated frequencies and positions of letters, bigrams, trigrams, and words.</p>
-        <p>The content used are various translations of the Universal Declaration of Human Rights.</p>
+        <p>Using the <a href="https://github.com/paceaux/methodius">Methodius library</a>, this has generated frequencies and positions of letters, character bigrams and trigrams, and words.</p>
+        <p>The content used is <a href="https://www.ohchr.org/en/search?f%5B0%5D=event_type_taxonomy_term_name%3AUniversal%20Declaration%20of%20Human%20Rights">various translations of the Universal Declaration of Human Rights.</a></p>
+        <p>Click on a token in a table to see it highlighted.</p>
         <p>Any of the samples can be edited.</p>
     </div>
-
     <language-nav class="js-nav g-header__nav tableSets__nav"></language-nav>
 </header>
 <main>
@@ -24,14 +24,22 @@
         <table-set languageName="German" id="German--tableSet" langid="de"></table-set>
         <table-set languageName="Norwegian" id="Norwegian--tableSet" langid="nn"></table-set>
         <table-set languageName="Swedish" id="Swedish--tableSet" langid="sv"></table-set>
+        <table-set languageName="Danish" id="Danish--tableSet" langid="da"></table-set>
         <hr />
         <h1>Romance Languages</h1>
-        <table-set languageName="Spanish" id="Spanish--tableSet" langid="es"></table-set>
-        <table-set languageName="Catalan" id="Catalan--tableSet" langid="ca"></table-set>
-        <table-set languageName="Portuguese" id="Portuguese--tableSet" langid="pt"></table-set>
+        <h2>Gallo-Romance</h2>
         <table-set languageName="French" id="French--tableSet" langid="fr"></table-set>
-        <table-set languageName="Italian" id="Italian--tableSet" langid="it"></table-set>
+        <h2>Occitano-Romance</h2>
+        <table-set languageName="Occitan" id="Occitan--tableSet" langid="fr"></table-set>
+        <table-set languageName="Catalan" id="Catalan--tableSet" langid="ca"></table-set>
+        <h2>Ibero-Romance</h2>
+        <table-set languageName="Portuguese" id="Portuguese--tableSet" langid="pt"></table-set>
+        <table-set languageName="Galician" id="Galician--tableSet" langid="gl"></table-set>
         <table-set languageName="Asturian" id="Asturian--tableSet" langid="ast"></table-set>
+        <table-set languageName="Spanish" id="Spanish--tableSet" langid="es"></table-set>
+        <h2>Central Romance</h2>
+        <table-set languageName="Italian" id="Italian--tableSet" langid="it"></table-set>
+        <table-set languageName="Corsican" id="Corsican--tableSet" langid="co"></table-set>
         <hr />
         <h1>Isolate Languages</h1>
         <table-set languageName="Basque" id="Basque--tableSet" langid="eu"></table-set>
@@ -51,6 +59,7 @@
     <small>
         &copy; All Rights Reserved. 
     </small>
+    <a href="https://github.com/paceaux/methodius-demo">Follow this project on Github</a>
     </p>
 </footer>
 <script src="demo.js" type="module"></script>
