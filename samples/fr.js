@@ -19,4 +19,5 @@ module.exports = {
     name: "French",
     udhrPreamble,
     udhr1,
+    lang: 'fr',
 }

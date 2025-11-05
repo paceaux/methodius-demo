@@ -23,4 +23,5 @@ module.exports = {
     name: "Portuguese",
     udhrPreamble,
     udhr1,
+    lang: 'pt',
 }

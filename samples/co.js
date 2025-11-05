@@ -21,4 +21,5 @@ module.exports = {
     name: "Corsican",
     udhrPreamble,
     udhr1,
+    lang: 'co',
 }

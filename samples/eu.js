@@ -32,4 +32,5 @@ module.exports = {
     name: "Basque",
     udhrPreamble,
     udhr1,
+    lang: 'eu',
 }

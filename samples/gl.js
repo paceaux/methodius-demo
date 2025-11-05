@@ -20,4 +20,5 @@ module.exports = {
     name: "Galician",
     udhrPreamble,
     udhr1,
+    lang: 'gl',
 }

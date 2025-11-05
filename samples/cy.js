@@ -29,4 +29,5 @@ module.exports = {
   name: 'Welsh',
   udhrPreamble,
   udhr1,
+  lang: 'cy',
 };

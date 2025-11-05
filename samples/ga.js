@@ -15,4 +15,5 @@ module.exports = {
     name: "Irish",
     udhrPreamble,
     udhr1,
+    lang: 'ga',
 }

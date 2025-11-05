@@ -23,5 +23,6 @@ const udhr1 = `Aw human sowels is born free and equal in dignity and richts. The
 module.exports = {
     name: "Scots", 
     udhrPreamble,
-    udhr1
+    udhr1,
+    lang: 'sco',
 }

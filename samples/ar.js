@@ -26,4 +26,5 @@ module.exports = {
     udhrPreamble,
     udhr1,
     direction: 'rtl',
+    lang: 'ar',
 }

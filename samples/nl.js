@@ -22,4 +22,5 @@ module.exports = {
   name: "Dutch",
   udhrPreamble,
   udhr1,
+  lang: 'nl',
 };

@@ -24,4 +24,5 @@ module.exports = {
   name: 'Catalan',
   udhrPreamble,
   udhr1,
+  lang: 'ca'
 };

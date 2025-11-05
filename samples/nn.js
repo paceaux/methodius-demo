@@ -17,5 +17,6 @@ const udhr1 = `Alle menneske er fødde til fridom og med same menneskeverd og me
 module.exports = {
     name: "Norwegian",
     udhrPreamble,
-    udhr1
+    udhr1,
+    lang: 'nn',
 };

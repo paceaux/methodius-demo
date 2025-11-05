@@ -25,4 +25,5 @@ module.exports = {
     name: "Occitan",
     udhrPreamble,
     udhr1,
+    lang: 'oc',
 }

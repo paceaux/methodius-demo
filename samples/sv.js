@@ -32,4 +32,5 @@ module.exports = {
     name: "Swedish",
     udhrPreamble,
     udhr1,
+    lang: 'sv',
 }

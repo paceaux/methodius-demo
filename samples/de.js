@@ -21,4 +21,5 @@ module.exports = {
     name: "German",
     udhrPreamble,
     udhr1,
+    lang: 'de',
 }

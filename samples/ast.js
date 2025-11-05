@@ -18,4 +18,5 @@ module.exports = {
     name: "Asturian",
     udhrPreamble,
     udhr1,
+    lang: 'ast',
 }
