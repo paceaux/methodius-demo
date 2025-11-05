@@ -10,17 +10,14 @@
   "author": "paceaux",
   "license": "MIT",
   "devDependencies": {
-    "@parcel/config-default": "^2.6.2",
-    "browserify": "^17.0.0",
+    "@parcel/config-default": "^2.16.1",
+    "browserify": "^17.0.1",
     "concat": "^1.0.3",
     "copyfiles": "^2.4.1",
     "lit": "^2.2.7",
     "parcel": "^2.6.2",
     "table-baseline.css": "^2.1.0",
     "typography-baseline.css": "^5.0.0"
-  },
-  "optionalDependencies": {
-    "@parcel/watcher-linux-x64-glibc": "2.4.0"
   },
   "dependencies": {
     "lit-context": "^1.0.15",
