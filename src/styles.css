@@ -38,6 +38,10 @@ html {
     justify-content: center;
 }
 
+.g-footer a {
+    font-size: var(--smallestTextSize);
+}
+
 
 .tableSets {
   position: relative;

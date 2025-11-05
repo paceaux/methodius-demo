@@ -44,7 +44,7 @@ class TableSet extends LitElement {
     }
 
     .tableSet__resultsHeading {
-        font-size: var(--baseTitleSize);
+        font-size: var(--smallestTitleSize);
     }
 
     :host:target {
