@@ -18,11 +18,22 @@ function generateNgramsFromSamples(sampleMap, NGrammer) {
   return ngrams;
 }
 
+function sortSamplesByName(set) {
+  const sortedArray = [...set]
+    .sort((a, b) => {
+      if (a.name < b.name) return -1;
+      if (a.name > b.name) return 1;
+      return 0
+    });
+  const sortedSet = new Set([...sortedArray]);
+  return sortedSet;
+}
 
 function createMapFromSet(set, sampleName) {
+  const sortedSet = sortSamplesByName(set);
   const map = new Map();
-  set.forEach(sample => {
-    map.set(sample.name, sample[sampleName]);
+  sortedSet.forEach(sample => {
+      map.set(sample.name, sample[sampleName]);
   });
   return map;
 }
