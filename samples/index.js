@@ -19,6 +19,7 @@ const oc = require('./oc');
 const gl = require('./gl');
 const co = require('./co');
 const da = require('./da');
+const br = require('./br');
 
 module.exports = new Set([
   en,
@@ -42,4 +43,5 @@ module.exports = new Set([
   sco,
   he,
   ar,
+  br,
 ]);

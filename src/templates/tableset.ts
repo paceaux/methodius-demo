@@ -207,6 +207,8 @@ mark::selection {
 
     cellClickHandler(evt: Event, shouldHighlightWord: boolean = false) {
         const target = evt.composedPath()[0];
+        console.log(evt);
+
         if (target.classList.contains('table__col1')) {
             const highlightVal = target.innerText;
             this.highlightString = highlightVal;
@@ -215,6 +217,18 @@ mark::selection {
             this.highlightedSample = highlightedSample;
             this.sampleTextareaRef.value.removeAttribute('open');
             this.sampleHighlightRef.value.setAttribute('open', true);
+        } else if (evt.shiftKey) {
+            const table = evt.target;
+            const parentContainer = table.parentNode;
+            const allTables = parentContainer.querySelectorAll('frequency-table')
+            allTables.forEach((table) => table.classList.remove('table--focused', 'table-blurred'))
+            table.classList.toggle('table--focused');
+
+            const otherTables = parentContainer.querySelectorAll('frequency-table:not(.table--focused)')
+            
+            otherTables.forEach(table =>{
+                table.classList.toggle('table--blurred');
+            })
         }
     }
 
